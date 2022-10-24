@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import sb.shoppingmall.domain.User;
 import sb.shoppingmall.repository.UserRepository;
+import sb.shoppingmall.repository.dto.UserDto;
 
 import java.util.List;
 
@@ -12,6 +13,21 @@ import java.util.List;
 public class MyBatisUserRepository implements UserRepository {
 
     private final UserMapper userMapper;
+
+    @Override
+    public void changePw(Long user_code, UserDto userDto) {
+        userMapper.changePw(user_code, userDto);
+    }
+
+    @Override
+    public void changeAddr(Long user_code, UserDto userDto) {
+        userMapper.changeAddr(user_code, userDto);
+    }
+
+    @Override
+    public void changeNick(Long user_code, UserDto userDto) {
+        userMapper.changeNick(user_code, userDto);
+    }
 
     @Override
     public List<User> findAll(){

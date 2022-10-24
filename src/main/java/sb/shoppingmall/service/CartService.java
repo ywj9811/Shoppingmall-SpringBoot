@@ -20,16 +20,16 @@ public class CartService {
         return cartRepository.save(cart);
     }
 
-    public int cart_plus(Cart cart) {
-        return cartRepository.cart_plus(cart);
+    public int cart_plus(Long cart_code) {
+        return cartRepository.cart_plus(cart_code);
     }
 
-    public int cart_minus(Cart cart) {
-        return cartRepository.cart_minus(cart);
+    public int cart_minus(Long cart_code) {
+        return cartRepository.cart_minus(cart_code);
     }
 
-    public int deleteOne(Cart cart) {
-        return cartRepository.deleteOne(cart);
+    public int deleteOne(Long cart_code) {
+        return cartRepository.deleteOne(cart_code);
     }
 
     public int deleteAll(Long user_code) {

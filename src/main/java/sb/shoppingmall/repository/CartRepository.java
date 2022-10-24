@@ -9,11 +9,11 @@ public interface CartRepository {
     List<Cart> cartList(Long user_code);
     Cart save(Cart cart);
 
-    int cart_plus(Cart cart);
+    int cart_plus(Long cart_code);
 
-    int cart_minus(Cart cart);
+    int cart_minus(Long cart_code);
 
-    int deleteOne(Cart cart);
+    int deleteOne(Long cart_code);
 
     int deleteAll(Long user_code);
     /**

@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import sb.shoppingmall.domain.User;
 import sb.shoppingmall.repository.UserRepository;
+import sb.shoppingmall.repository.dto.UserDto;
 
 import java.util.List;
 
@@ -33,5 +34,17 @@ public class UserService {
 
     public User findById(String user_id) {
         return userRepository.findById(user_id);
+    }
+
+    public void changeNick(Long user_code, UserDto userDto) {
+        userRepository.changeNick(user_code, userDto);
+    }
+
+    public void changePw(Long user_code, UserDto userDto) {
+        userRepository.changePw(user_code, userDto);
+    }
+
+    public void changeAddr(Long user_code, UserDto userDto) {
+        userRepository.changeAddr(user_code, userDto);
     }
 }

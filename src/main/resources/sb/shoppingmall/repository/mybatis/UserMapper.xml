@@ -29,4 +29,19 @@
     <select id="findByEmail" resultType="User">
         select * from usertbl where user_email = #{user_email}
     </select>
+
+    <update id="changePw">
+        update usertbl set user_pw = #{userDto.user_pw}
+        where user_code = #{user_code}
+    </update>
+
+    <update id="changeNick">
+        update usertbl set user_nick = #{userDto.user_nick}
+        where user_code = #{user_code}
+    </update>
+
+    <update id="changeAddr">
+        update usertbl set user_addr = #{userDto.user_addr}, user_daddr = #{userDto.user_daddr}
+        where user_code = #{user_code}
+    </update>
 </mapper>

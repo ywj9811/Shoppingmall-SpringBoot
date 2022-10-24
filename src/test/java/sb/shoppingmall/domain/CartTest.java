@@ -37,7 +37,7 @@ public class CartTest {
         Cart cart = new Cart(1L, test.getUser_code(), 1);
         cartService.save(cart);
 
-        cartService.cart_plus(cart);
+        cartService.cart_plus(cart.getCart_code());
         assertThat(cartService.cartList(test.getUser_code()).get(0).getCart_cnt()).isEqualTo(2);
     }
 
@@ -47,7 +47,7 @@ public class CartTest {
         Cart cart = new Cart(1L, test.getUser_code(), 1);
         cartService.save(cart);
 
-        int rs = cartService.cart_minus(cart);
+        int rs = cartService.cart_minus(cart.getCart_code());
         assertThat(rs).isEqualTo(1);
     }
 
@@ -57,7 +57,7 @@ public class CartTest {
         Cart cart = new Cart(1L, test.getUser_code(), 2);
         cartService.save(cart);
 
-        int rs = cartService.cart_minus(cart);
+        int rs = cartService.cart_minus(cart.getCart_code());
         assertThat(rs).isEqualTo(1);
     }
 
@@ -69,7 +69,7 @@ public class CartTest {
         cartService.save(cart);
         cartService.save(cart2);
 
-        cartService.deleteOne(cart);
+        cartService.deleteOne(cart.getCart_code());
 
         List<Cart> list = cartService.cartList(test.getUser_code());
         assertThat(list.size()).isEqualTo(1);

@@ -25,18 +25,18 @@ public class MyBatisCartRepository implements CartRepository {
     }
 
     @Override
-    public int cart_plus(Cart cart) {
-        return cartMapper.cart_plus(cart);
+    public int cart_plus(Long cart_code) {
+        return cartMapper.cart_plus(cart_code);
     }
 
     @Override
-    public int cart_minus(Cart cart) {
-        return cartMapper.cart_minus(cart);
+    public int cart_minus(Long cart_code) {
+        return cartMapper.cart_minus(cart_code);
     }
 
     @Override
-    public int deleteOne(Cart cart) {
-        return cartMapper.deleteOne(cart);
+    public int deleteOne(Long cart_code) {
+        return cartMapper.deleteOne(cart_code);
     }
 
     @Override
