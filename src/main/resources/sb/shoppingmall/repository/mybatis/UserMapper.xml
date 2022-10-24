@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sb.shoppingmall.repository.mybatis.UserMapper">
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="user_code">
+        insert into usertbl (user_id, user_pw, user_name, user_tel, user_email, user_addr, user_daddr, user_gender
+        , user_birth, user_nick, user_logdate, user_status, user_total, user_class, user_regdate)
+        values (
+                #{user_id}, #{user_pw}, #{user_name}, #{user_tel},
+                #{user_email}, #{user_addr}, #{user_daddr}, #{user_gender},
+                #{user_birth}, #{user_nick}, sysdate(), 0,
+                0, 0, sysdate()
+                )
+    </insert>
+
+    <select id="findAll" resultType="User">
+        select * from usertbl
+    </select>
+
+    <select id="idCheck" resultType="User">
+        select * from usertbl where user_id = #{user_id}
+    </select>
+
+    <select id="nickCheck" resultType="User">
+        select * from usertbl where user_nick = #{user_nick}
+    </select>
+
+    <select id="findByEmail" resultType="User">
+        select * from usertbl where user_email = #{user_email}
+    </select>
+</mapper>
