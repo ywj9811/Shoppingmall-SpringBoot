@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sb.shoppingmall.repository.mybatis.CartMapper">
+    <insert id="save" useGeneratedKeys="true" keyProperty="cart_code">
+        insert into carttbl (user_code, p_info_dcode, cart_cnt) values
+            (
+             #{user_code}, #{p_info_dcode}, 1
+            )
+    </insert>
+
+    <select id="cartList" resultType="Cart">
+        select * from carttbl where user_code = #{user_code}
+    </select>
+
+    <update id="cart_plus">
+        update carttbl
+        set cart_cnt = cart_cnt+1
+        where cart_code = #{cart_code}
+    </update>
+
+    <update id="cart_minus">
+        <if test="cart_cnt > 1">
+            update carttbl
+            set cart_cnt = cart_cnt-1
+            where cart_code = #{cart_code}
+        </if>
+        <if test="cart_cnt == 1">
+            update carttbl
+            set cart_cnt = cart_cnt
+            where cart_code = #{cart_code}
+        </if>
+    </update>
+
+    <delete id="deleteOne">
+        delete from carttbl where cart_code = #{cart_code}
+    </delete>
+
+    <delete id="deleteAll">
+        delete from carttbl where user_code = #{user_code}
+    </delete>
+</mapper>
