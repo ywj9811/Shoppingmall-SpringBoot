@@ -30,7 +30,7 @@ public class UserTest {
     @Test
     void save(){
         User user = new User( "abc", "2443", "a", "123123123123", "123@123123",
-                "as", "asv", 123456, 123456, "b");
+                "as", "asv", 123456, "123456", "b");
         log.info("{}", user);
         User saveUser = userService.save(user);
         log.info("확인 = {}", saveUser);
@@ -42,7 +42,7 @@ public class UserTest {
     @Test
     void findId(){
         User user = new User( "abc", "2443", "a", "123123123123", "123@123123",
-                "as", "asv", 123456, 123456, "b");
+                "as", "asv", 123456, "123456", "b");
         User saveUser = userService.save(user);
 
         User findBI = userService.findById(user.getUser_id());
@@ -54,7 +54,7 @@ public class UserTest {
     @Test
     void findByEmail(){
         User user = new User( "abc", "2443", "a", "123123123123", "123@123123",
-                "as", "asv", 123456, 123456, "b");
+                "as", "asv", 123456, "123456", "b");
         User saveUser = userService.save(user);
 
         User findBE = userService.findByEmail(user.getUser_email());
