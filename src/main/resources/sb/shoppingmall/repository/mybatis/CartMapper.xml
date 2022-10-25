@@ -5,7 +5,7 @@
     <insert id="save" useGeneratedKeys="true" keyProperty="cart_code">
         insert into carttbl (user_code, p_info_dcode, cart_cnt) values
             (
-             #{user_code}, #{p_info_dcode}, 1
+             #{user_code}, #{p_info_dcode}, #{cart_cnt}
             )
     </insert>
 

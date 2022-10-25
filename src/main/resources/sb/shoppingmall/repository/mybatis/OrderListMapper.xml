@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sb.shoppingmall.repository.mybatis.OrderListMapper">
+    <insert id="save" useGeneratedKeys="true" keyProperty="orderlist_code">
+        insert into orderlisttbl (p_info_dcode, order_code, payment_code, user_code, orderlist_cnt)
+        values (
+                #{p_info_dcode}, #{order_code} ,#{payment_code}, #{user_code}, #{orderlist_cnt}
+               )
+    </insert>
+
+    <select id="findByUser" resultType="OrderList">
+        select *
+        from orderlisttbl where user_code = #{user_code}
+    </select>
+
+    <select id="findByOrder" resultType="OrderList">
+        select *
+        from orderlisttbl where order_code = #{order_code}
+    </select>
+</mapper>
