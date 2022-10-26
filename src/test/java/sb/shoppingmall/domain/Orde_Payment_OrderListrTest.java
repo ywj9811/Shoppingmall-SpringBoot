@@ -160,10 +160,15 @@ public class Orde_Payment_OrderListrTest {
         }
 
 
-
         List<OrderList> orderLists1 = orderListService.findByOrder(rs.getOrder_code());
         List<OrderList> orderLists2 = orderListService.findByUser(testUser.getUser_code());
 
+        for (int i = 0; i < orderLists1.size(); i++) {
+            log.info("1번 날짜 확인 = {}", orderLists1.get(i).getOrderlist_date());
+        }
+        for (int i = 0; i < orderLists2.size(); i++) {
+            log.info("2번 날짜 확인 = {}", orderLists2.get(i).getOrderlist_date());
+        }
         assertThat(orderLists1).isEqualTo(orderLists2);
     }
 }
