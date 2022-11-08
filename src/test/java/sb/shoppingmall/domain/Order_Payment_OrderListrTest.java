@@ -35,65 +35,27 @@ public class Order_Payment_OrderListrTest {
         Cart cart = new Cart(1L, testUser.getUser_code(), 1);
         Cart cart1 = new Cart(2L, testUser.getUser_code(), 2);
         Cart cart2 = new Cart(3L, testUser.getUser_code(), 3);
-        Cart cart3 = new Cart(4L, testUser.getUser_code(), 1);
 
         cartService.save(cart);
         cartService.save(cart1);
         cartService.save(cart2);
-        cartService.save(cart3);
     }
 
     @Test
     void OrderSave() {
         User testUser = userService.findById("test");
 
-        List<Cart> cartList = cartService.cartList(testUser.getUser_code());
-
-        log.info("List !! {}", cartList);
-
-        int ordercnt = 0;
-        int ordertotal = 0;
-        for(int i = 0; i < cartList.size(); i++) {
-            ordercnt += cartList.get(i).getCart_cnt();
-            ordertotal += 1000 * cartList.get(i).getCart_cnt();
-        }
-
-        Order order = new Order(testUser.getUser_code(), System.currentTimeMillis(), ordercnt, ordertotal,
-                testUser.getUser_name(), testUser.getUser_tel(), testUser.getUser_addr(),
-                testUser.getUser_daddr());
-
-        Order rs = orderService.save(order);
+        Order rs = orderService.save(testUser);
         log.info("cnt, ms = {} {}", rs.getOrder_cnt(), rs.getOrder_date());
-        assertThat(rs.getOrder_cnt()).isEqualTo(7);
-        assertThat(rs.getOrder_total()).isEqualTo(7000);
+        assertThat(rs.getOrder_cnt()).isEqualTo(6);
+        assertThat(rs.getOrder_total()).isEqualTo(60000);
     }
 
     @Test
     void OrderFind() {
         User testUser = userService.findById("test");
-        List<Cart> cartList = cartService.cartList(testUser.getUser_code());
 
-        log.info("List !! {}", cartList);
-
-        log.info("user_code {}", testUser.getUser_code());
-
-        int ordercnt = 0;
-        int ordertotal = 0;
-        for(int i = 0; i < cartList.size(); i++) {
-            ordercnt += cartList.get(i).getCart_cnt();
-            ordertotal += 1000 * cartList.get(i).getCart_cnt();
-        }
-
-        Order order = new Order(testUser.getUser_code(), System.currentTimeMillis(), ordercnt, ordertotal,
-                testUser.getUser_name(), testUser.getUser_tel(), testUser.getUser_addr(),
-                testUser.getUser_daddr());
-
-        log.info("order의 user_code {}", order.getUser_code());
-        log.info("order = {}", order);
-
-        orderService.save(order);
-
-        Order rs = orderService.find(order);
+        Order rs = orderService.find(orderService.save(testUser));
         log.info("rs OrderCode = {}", rs.getOrder_code());
 
         assertThat(rs.getUser_code()).isEqualTo(testUser.getUser_code());
@@ -102,23 +64,8 @@ public class Order_Payment_OrderListrTest {
     @Test
     void PaymentSave() {
         User testUser = userService.findById("test");
-        List<Cart> cartList = cartService.cartList(testUser.getUser_code());
 
-        log.info("List !! {}", cartList);
-
-        int ordercnt = 0;
-        int ordertotal = 0;
-        for(int i = 0; i < cartList.size(); i++) {
-            ordercnt += cartList.get(i).getCart_cnt();
-            ordertotal += 1000 * cartList.get(i).getCart_cnt();
-        }
-
-        Order order = new Order(testUser.getUser_code(), System.currentTimeMillis(), ordercnt, ordertotal,
-                testUser.getUser_name(), testUser.getUser_tel(), testUser.getUser_addr(),
-                testUser.getUser_daddr());
-
-        orderService.save(order);
-        Order rs = orderService.find(order);
+        Order rs = orderService.find(orderService.save(testUser));
 
         Payment payment = new Payment(rs.getOrder_code(), System.currentTimeMillis(), rs.getOrder_total());
         paymentService.save(payment);
@@ -133,21 +80,7 @@ public class Order_Payment_OrderListrTest {
         User testUser = userService.findById("test");
         List<Cart> cartList = cartService.cartList(testUser.getUser_code());
 
-        log.info("List !! {}", cartList);
-
-        int ordercnt = 0;
-        int ordertotal = 0;
-        for(int i = 0; i < cartList.size(); i++) {
-            ordercnt += cartList.get(i).getCart_cnt();
-            ordertotal += 1000 * cartList.get(i).getCart_cnt();
-        }
-
-        Order order = new Order(testUser.getUser_code(), System.currentTimeMillis(), ordercnt, ordertotal,
-                testUser.getUser_name(), testUser.getUser_tel(), testUser.getUser_addr(),
-                testUser.getUser_daddr());
-
-        orderService.save(order);
-        Order rs = orderService.find(order);
+        Order rs = orderService.find(orderService.save(testUser));
 
         Payment payment = new Payment(rs.getOrder_code(), System.currentTimeMillis(), rs.getOrder_total());
         paymentService.save(payment);

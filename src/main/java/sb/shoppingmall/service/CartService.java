@@ -3,6 +3,7 @@ package sb.shoppingmall.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import sb.shoppingmall.domain.Cart;
+import sb.shoppingmall.domain.CartView;
 import sb.shoppingmall.repository.CartRepository;
 
 import java.util.List;
@@ -11,6 +12,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CartService {
     private final CartRepository cartRepository;
+
+    public List<CartView> cartViewList(Long user_code) {
+        return cartRepository.cartViewList(user_code);
+    }
 
     public List<Cart> cartList(Long user_code) {
         return cartRepository.cartList(user_code);

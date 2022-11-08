@@ -1,10 +1,12 @@
 package sb.shoppingmall.repository;
 
 import sb.shoppingmall.domain.Cart;
+import sb.shoppingmall.domain.CartView;
 
 import java.util.List;
 
 public interface CartRepository {
+    List<CartView> cartViewList(Long user_code);
 
     List<Cart> cartList(Long user_code);
     Cart save(Cart cart);

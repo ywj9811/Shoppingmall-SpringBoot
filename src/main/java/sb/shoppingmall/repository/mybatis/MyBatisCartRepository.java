@@ -3,6 +3,7 @@ package sb.shoppingmall.repository.mybatis;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import sb.shoppingmall.domain.Cart;
+import sb.shoppingmall.domain.CartView;
 import sb.shoppingmall.repository.CartRepository;
 
 import java.util.List;
@@ -12,6 +13,11 @@ import java.util.List;
 public class MyBatisCartRepository implements CartRepository {
 
     private final CartMapper cartMapper;
+
+    @Override
+    public List<CartView> cartViewList(Long user_code) {
+        return cartMapper.cartViewList(user_code);
+    }
 
     @Override
     public List<Cart> cartList(Long user_code){

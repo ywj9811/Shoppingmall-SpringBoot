@@ -13,6 +13,12 @@
         select * from carttbl where user_code = #{user_code}
     </select>
 
+    <select id="cartViewList" resultType="CartView">
+        select carttbl.*, p_detailtbl.p_info_price from carttbl, p_detailtbl
+                                                   where user_code = #{user_code}
+                                                     and p_detailtbl.p_info_dcode = carttbl.p_info_dcode
+    </select>
+
     <update id="cart_plus">
         update carttbl
         set cart_cnt = cart_cnt+1
