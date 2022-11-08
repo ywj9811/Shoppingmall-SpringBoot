@@ -48,7 +48,7 @@ public class ShopConfig {
 
     @Bean
     public OrderService orderService() {
-        return new OrderService(orderRepository());
+        return new OrderService(orderRepository(), cartRepository());
     }
 
     @Bean
