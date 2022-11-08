@@ -15,7 +15,7 @@ import static org.assertj.core.api.Assertions.*;
 @Slf4j
 @Transactional
 @SpringBootTest
-public class Orde_Payment_OrderListrTest {
+public class Order_Payment_OrderListrTest {
 
     @Autowired
     OrderService orderService;
